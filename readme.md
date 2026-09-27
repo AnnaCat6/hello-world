@@ -4,12 +4,12 @@
     ```html
 <h1>Hello world!</h1>
 <meta charset="utf-8">
-    <title>Hello World</title>
+   
     <link rel="stylesheet" href="bluestyle.css">
   </head>
   <body>
     <h1>Привет, мир!</h1>
-
+ <title>Hello World</title>
     <div>
       <img src="img_hello_world.jpg" alt="Привет, мир из космоса" style="width: 100%; max-width: 960px;">
     </div>
