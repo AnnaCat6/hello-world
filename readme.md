@@ -1,16 +1,19 @@
-<
-title><
-head><
-html><!DOCTYPE html>Hello World!</title>
-<link rel="stylesheet" href="bluestyle.css">
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="bluestyle.css">
+  </head>
+  <body>
+    <h1>Привет, мир!</h1>
 
-<h1>Привет, мир!</h1>
-<div"><img src="img_hello_world.jpg " alt="Привет, мир из космоса" style="width: 100%;max-width: 960px"></div>
-<p>Это первый файл в моем новом репозитории Git.</p>
-<p>Эта строка здесь, чтобы показать, как работает слияние.</p>
-<div"><img src="img_hello_git.jpg " alt="Hello Git" style="width:100%;max-width:640px"></div>
+    <div>
+      <img src="img_hello_world.jpg" alt="Привет, мир из космоса" style="width: 100%; max-width: 960px;">
+    </div>
 
-</body>
-</html>
+    <p>Это первый файл в моем новом репозитории Git.</p>
+    <p>Эта строка здесь, чтобы показать, как работает слияние.</p>
+
+    <div>
+      <img src="img_hello_git.jpg" alt="Hello Git" style="width: 100%;
