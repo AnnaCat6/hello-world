@@ -1,4 +1,12 @@
-export default function isLess(a, b) {
+/**
+ * Проверяет, является ли первая строка лексикографически меньше второй,
+ * используя ручной посимвольный перебор.
+ * @param {string} a - Первая строка.
+ * @param {string} b - Вторая строка.
+ * @returns {boolean} true, если a < b лексикографически; иначе false.
+ * @throws {TypeError} Если хотя бы один из аргументов не является строкой.
+ */
+export function isLess(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') {
     throw new TypeError('Аргументы должны быть строками!');
   }
@@ -6,10 +14,10 @@ export default function isLess(a, b) {
 let i = 0;
 
 while (a[i] !== undefined && b[i] !== undefined) {
-  if (a.charCodeAt(i) < b.charCodeAt(i)) {
+  if (a[i] < b[i]) {
     return true;
   } 
-  if (a.charCodeAt(i) > b.charCodeAt(i)) {
+  if (a[i] > b[i]) {
     return false;
   }
   i++;

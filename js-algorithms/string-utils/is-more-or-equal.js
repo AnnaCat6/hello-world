@@ -1,4 +1,11 @@
-export default function isMoreOrEqual(a, b) {
+/**
+ * Проверяет, является ли первая строка лексикографически больше или равна второй.
+ * @param {string} a - Первая строка.
+ * @param {string} b - Вторая строка.
+ * @returns {boolean} true, если a >= b лексикографически; иначе false.
+ * @throws {TypeError} Если хотя бы один из аргументов не является строкой.
+ */
+export function isMoreOrEqual(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') {
     throw new TypeError('Аргументы должны быть строками!');
   }
@@ -6,17 +13,14 @@ export default function isMoreOrEqual(a, b) {
 let i = 0;
 
 while (a[i] !== undefined && b[i] !== undefined) {
-  if (a.charCodeAt(i) > b.charCodeAt(i)) {
-    return true;
-  } 
-  if (b.charCodeAt(i) > a.charCodeAt(i)) {
-    return false;
+    if (a[i] > b[i]) {
+      return true;
+    }
+    if (a[i] < b[i]) {
+      return false;
+    }
+    i++;
   }
-  i++;
-  } 
-  if (a[i] !== undefined) {
-    return true;
-  } else {
-    return b[i] === undefined;
-  }
+
+  return a[i] !== undefined || b[i] === undefined;
 }

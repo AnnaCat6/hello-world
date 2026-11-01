@@ -1,4 +1,4 @@
-import isNotEqual from './is-not-equal.js'
+import { isNotEqual } from './is-not-equal.js'
 
 describe('функция isNotEqual', () => {
 test('Должна вернуть true для разных строк hello, world', () => {

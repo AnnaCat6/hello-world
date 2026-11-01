@@ -1,4 +1,4 @@
-import isLess from './is-less.js'
+import { isLess } from './is-less.js';
 
 describe('Тесты isLess', () => {
 test('Должна вернуть true если a явно меньше', () => {

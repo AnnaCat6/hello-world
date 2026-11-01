@@ -1,5 +1,12 @@
 import { len } from './len.js';
-
+/**
+ * Возвращает индекс первого вхождения подстроки в строке, используя ручной перебор.
+ * Если подстрока не найдена, возвращает -1.
+ * @param {string} str - Строка, в которой выполняется поиск.
+ * @param {string} search - Подстрока для поиска.
+ * @returns {number} Индекс первого вхождения подстроки; -1, если подстрока не найдена.
+ * @throws {TypeError} Если хотя бы один из аргументов не является строкой.
+ */
 export function indexOf(str, search) {
   if (typeof str !== 'string' || typeof search !== 'string') {
     throw new TypeError('Аргументы должны быть строками!');

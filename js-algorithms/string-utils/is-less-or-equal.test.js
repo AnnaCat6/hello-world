@@ -1,4 +1,4 @@
-import isLessOrEqual from './is-less-or-equal.js';
+import { isLessOrEqual } from './is-less-or-equal.js';
 
   describe('Тесты isLessOrEqual', () => {
   test('Должна вернуть true, если a явно меньше', () => {
