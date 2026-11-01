@@ -1,7 +1,6 @@
 /**
  * Заменяет первое вхождение подстроки search на replacement.
  * Если search не найден — возвращает исходную строку.
- *
  * @param {string} str - Исходная строка.
  * @param {string} search - Подстрока, которую ищем.
  * @param {string} replacement - Строка, на которую заменяем.
@@ -18,7 +17,6 @@ export function replace(str, search, replacement) {
   }
 
   const index = str.indexOf(search);
-
   if (index === -1) {
     return str;
   }

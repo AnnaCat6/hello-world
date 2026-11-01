@@ -27,8 +27,6 @@ export function pad(str, length, char, side) {
   }
 
   const paddingLen = length - currentLen;
-
-  // Вспомогательная: сколько символов нужно, и как их получить из char (циклично)
   const getPad = (count) => {
     const repeats = Math.ceil(count / char.length);
     return char.repeat(repeats).slice(0, count);
@@ -43,7 +41,7 @@ export function pad(str, length, char, side) {
 
     case 'both':
       const leftLen = Math.floor(paddingLen / 2);
-      const rightLen = paddingLen - leftLen; // при нечётном — лишний справа
+      const rightLen = paddingLen - leftLen;
       return getPad(leftLen) + str + getPad(rightLen);
   }
 }
