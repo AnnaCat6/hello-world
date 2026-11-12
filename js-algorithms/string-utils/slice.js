@@ -1,3 +1,6 @@
+import { len } from './len.js';
+import { substring } from './substring.js';
+
 /**
  * Извлекает подстроку с поддержкой отрицательных индексов.
  * - Если str не строка — выбрасывается TypeError.
@@ -13,8 +16,8 @@
  * @returns {string} Подстрока согласно правилам.
  * @throws {TypeError} Если типы аргументов неверны.
  */
+
 export function slice(str, start, end) {
-  // Заглушка: пока просто используем нативный slice, чтобы тесты начали проходить
   if (typeof str !== 'string') {
     throw new TypeError('Аргумент str должен быть строкой');
   }
@@ -24,5 +27,12 @@ export function slice(str, start, end) {
   if (end !== undefined && typeof end !== 'number') {
     throw new TypeError('Аргумент end должен быть числом');
   }
-  return str.slice(start, end);
+
+  const n = len(str);
+  let from = start < 0 ? Math.max(n + start, 0) : Math.min(start, n);
+  let to = end === undefined ? n : end;
+  to = to < 0 ? Math.max(n + to, 0) : Math.min(to, n);
+
+  if (from >= to) return '';
+  return substring(str, from, to);
 }

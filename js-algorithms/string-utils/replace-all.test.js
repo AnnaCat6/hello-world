@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { replaceAll } from './replace-all.js';
 
 test('должна заменить одно вхождение: ("hello", "ll", "LL") → "heLLo"', () => {

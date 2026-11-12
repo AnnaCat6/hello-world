@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { slice } from './slice.js';
 
 test('должна вернуть "hello" для ("hello", 0, 5)', () => {

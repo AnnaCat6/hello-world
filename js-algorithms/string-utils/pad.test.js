@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { pad } from './pad.js';
 
 test('должна дополнить слева: ("hi", 5, "-", "left") → "---hi"', () => {

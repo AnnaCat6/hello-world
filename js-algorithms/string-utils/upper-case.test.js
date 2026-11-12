@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { upperCase } from './upper-case.js';
 
 test('должна перевести все строчные латинские: ("hello") → "HELLO"', () => {

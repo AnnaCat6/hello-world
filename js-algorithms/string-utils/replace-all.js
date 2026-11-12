@@ -1,30 +1,50 @@
+import { len } from './len.js';
+import { indexOf } from './index-of.js';
+import { slice } from './slice.js';
+
 /**
- * Заменяет все вхождения подстроки search на replacement.
- * Поиск продолжается после вставленного replacement (без рекурсии).
- * Особый случай: если search === '', то replacement вставляется между каждым символом,
- * а также в начало и конец строки. Например: 'abc', '', 'X' → 'XaXbXcX'.
- * @param {string} str - Исходная строка.
- * @param {string} search - Подстрока, которую ищем.
- * @param {string} replacement - Строка, на которую заменяем.
- * @returns {string} Строка со всеми заменами.
- * @throws {TypeError} Если любой из аргументов не является строкой.
+ * Функция заменяет все вхождения подстроки
+ *
+ * @param {string} str - строка, в которой идёт замена
+ * @param {string} search - искомая подстрока, которая будет заменена
+ * @param {string} replacement - строка, на которую будет заменена
+ * @returns {string} - строка, все вхождения заменены. Если search не найден, то возвращается str
+ * @throws {TypeError} - если любой аргумент не строка
+ *
+ * @example
+ *   replaceAll('hello world', 'hello', 'hi'); // 'hi world'
+ *   replaceAll('hello', 'help', 'hhhh');      // 'hello'
+ *   replaceAll('banana', 'na', 'ba');         // 'bababa'
+ *   replaceAll('hi', 'i', 'ello');            // 'hello'
+ *   replaceAll('hello', 'll', '');            // 'heo'
  */
 export function replaceAll(str, search, replacement) {
-  if ([str, search, replacement].some(v => typeof v !== 'string')) {
-    throw new TypeError('Все аргументы должны быть строками');
+  if (typeof str !== 'string' || typeof search !== 'string' || typeof replacement !== 'string') {
+    throw new TypeError('Аргументы должны быть строками');
   }
 
+  const searchLength = len(search);
+  if (str === '') return '';
   if (search === '') {
-    return str === '' ? '' : replacement + str.split('').join(replacement) + replacement;
+    let out = '';
+    for (const char of str) {
+      out += replacement + char;
+    }
+    return out + replacement;
   }
 
   let result = '';
-  let lastIndex = 0;
+  let partAfterSearch = str;
+  let indexSearch = indexOf(partAfterSearch, search);
 
-  for (let index; (index = str.indexOf(search, lastIndex)) !== -1; ) {
-    result += str.slice(lastIndex, index) + replacement;
-    lastIndex = index + search.length;
-  }
+  if (indexSearch === -1) return str;
+  do {
+    const partBeforeSearch = slice(partAfterSearch, 0, indexSearch);
+    partAfterSearch = slice(partAfterSearch, indexSearch + searchLength);
 
-  return result + str.slice(lastIndex);
+    result += partBeforeSearch + replacement;
+    indexSearch = indexOf(partAfterSearch, search);
+
+  } while (indexSearch !== -1);
+  return result + partAfterSearch;
 }

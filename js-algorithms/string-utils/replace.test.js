@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { replace } from './replace.js';
 
 test('должна заменить "world" на "everyone": ("hello world", "world", "everyone") → "hello everyone"', () => {

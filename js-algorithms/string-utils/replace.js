@@ -1,3 +1,7 @@
+import { len } from './len.js';
+import { indexOf } from './index-of.js';
+import { slice } from './slice.js';
+
 /**
  * Заменяет первое вхождение подстроки search на replacement.
  * Если search не найден — возвращает исходную строку.
@@ -7,19 +11,14 @@
  * @returns {string} Строка с заменённым первым вхождением.
  * @throws {TypeError} Если любой из аргументов не является строкой.
  */
+
 export function replace(str, search, replacement) {
   if (typeof str !== 'string' || typeof search !== 'string' || typeof replacement !== 'string') {
     throw new TypeError('Все аргументы должны быть строками');
   }
+  if (search === '') return str;
 
-  if (search === '') {
-    return str;
-  }
-
-  const index = str.indexOf(search);
-  if (index === -1) {
-    return str;
-  }
-
-  return str.slice(0, index) + replacement + str.slice(index + search.length);
+  const index = indexOf(str, search, 0);
+  if (index === -1) return str;
+  return slice(str, 0, index) + replacement + slice(str, index + len(search), len(str));
 }

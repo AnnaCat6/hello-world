@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { trim } from './trim.js';
 
 test('должна удалить пробелы с обеих сторон: ("  hello  ") → "hello"', () => {

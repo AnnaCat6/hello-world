@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'bun:test';
 import { lowerCase } from './lower-case.js';
 
 test('должна перевести все заглавные латинские: ("HELLO") → "hello"', () => {

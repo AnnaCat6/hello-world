@@ -1,8 +1,10 @@
+import { len } from './len.js';
+
 /**
  * Возвращает подстроку с нормализацией границ.
  * - Если str не строка — выбрасывается TypeError.
  * - Если start/end не конечные числа (кроме NaN) — выбрасывается TypeError.
- * - NaN трактуется как отсутствие значения: start = 0, end = str.length.
+ * - NaN трактуется как отсутствие значения: start = 0, end = len(str).
  * - Отрицательные индексы принудительно становятся 0.
  * - Если после нормализации start > end — индексы меняются местами.
  * @param {string} str - Исходная строка.
@@ -16,6 +18,8 @@ export function substring(str, start, end) {
     throw new TypeError('Аргумент str должен быть строкой');
   }
 
+  const n = len(str);
+
   if (Number.isNaN(start)) {
     start = 0;
   }
@@ -24,20 +28,24 @@ export function substring(str, start, end) {
   }
   if (start < 0) {
     start = 0;
+  } else if (start > n) {
+    start = n;
   }
 
   if (end !== undefined && end !== null) {
     if (Number.isNaN(end)) {
-      end = str.length;
+      end = n;
     }
     if (typeof end !== 'number' || !Number.isFinite(end)) {
       throw new TypeError('Аргумент end должен быть числом');
     }
     if (end < 0) {
       end = 0;
+    } else if (end > n) {
+      end = n;
     }
   } else {
-    end = str.length;
+    end = n;
   }
 
   if (start > end) {
@@ -45,5 +53,10 @@ export function substring(str, start, end) {
     start = end;
     end = tmp;
   }
-  return str.slice(start, end);
+
+  let result = '';
+  for (let i = start; i < end; i++) {
+    result += str[i];
+  }
+  return result;
 }

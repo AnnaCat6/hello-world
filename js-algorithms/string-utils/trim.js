@@ -1,3 +1,6 @@
+import { len } from './len.js';
+import { substring } from './substring.js';
+
 /**
  * Удаляет пробелы (' ') с начала и конца строки.
  * Внутренние пробелы и другие пробельные символы (\t, \n) не удаляются.
@@ -10,20 +13,19 @@ export function trim(str) {
     throw new TypeError('Аргумент str должен быть строкой');
   }
 
+  const n = len(str);
   let start = 0;
-  const len = str.length;
-
-  while (start < len && str[start] === ' ') {
+  while (start < n && str[start] === ' ') {
     start++;
   }
 
-  if (start === len) {
+  if (start === n) {
     return '';
   }
 
-  let end = len - 1;
+  let end = n - 1;
   while (end >= 0 && str[end] === ' ') {
     end--;
   }
-  return str.slice(start, end + 1);
+  return substring(str, start, end + 1);
 }

@@ -1,3 +1,7 @@
+import { len } from './len.js';
+import { repeat } from './repeat.js';
+import { slice } from './slice.js';
+
 /**
  * Дополняет строку символами до заданной длины.
  * @param {string} str - Исходная строка.
@@ -7,6 +11,7 @@
  * @returns {string} Строка, дополненная до длины length.
  * @throws {TypeError} Если str не строка или side неверное.
  */
+
 export function pad(str, length, char, side) {
   if (typeof str !== 'string') {
     throw new TypeError('Аргумент str должен быть строкой');
@@ -17,31 +22,28 @@ export function pad(str, length, char, side) {
   if (typeof char !== 'string' || char === '') {
     throw new TypeError('Аргумент char должен быть непустой строкой');
   }
-  if (!['left', 'right', 'both'].includes(side)) {
+  if (side !== 'left' && side !== 'right' && side !== 'both') {
     throw new TypeError('Аргумент side должен быть "left", "right" или "both"');
   }
 
-  const currentLen = str.length;
+  const currentLen = len(str);
   if (currentLen >= length) {
     return str;
   }
 
   const paddingLen = length - currentLen;
-  const getPad = (count) => {
-    const repeats = Math.ceil(count / char.length);
-    return char.repeat(repeats).slice(0, count);
-  };
+  const charLen = len(char);
+  const getPad = (count) => slice(repeat(char, Math.ceil(count / charLen)), 0, count);
 
   switch (side) {
     case 'left':
       return getPad(paddingLen) + str;
-
     case 'right':
       return str + getPad(paddingLen);
-
-    case 'both':
+    case 'both': {
       const leftLen = Math.floor(paddingLen / 2);
       const rightLen = paddingLen - leftLen;
       return getPad(leftLen) + str + getPad(rightLen);
+    }
   }
 }
