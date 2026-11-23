@@ -1,12 +1,12 @@
 /**
- * Считает элементы массива. length запрещён
- * @param {array} arr — массив элементов
- * @returns {number} — количество элементов
- * @throws {TypeError} — если arr не массив
+ * Считает элементы массива
+ * @param {Array} arr
+ * @returns {number} Количество элементов.
+ * @throws {TypeError} Если arr не массив.
  */
-export function len(arr) {
+export function lenArr(arr) {
   if (!Array.isArray(arr)) {
-    throw new TypeError('аргумент должен быть массивом');
+    throw new TypeError('Ожидался массив');
   }
 
   let count = 0;
